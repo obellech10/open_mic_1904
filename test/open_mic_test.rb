@@ -12,6 +12,8 @@ class OpenMicTest < MiniTest::Test
     @open_mic = OpenMic.new({location: "Comedy Works", date: "11-20-18"})
     @sal = User.new("Sal")
     @ali = User.new("Ali")
+    @joke_1 = Joke.new(1, "Why did the strawberry cross the road?", "Because his mother was in a jam.")
+    @joke_2 = Joke.new(2, "How do you keep a lion from charging?", "Take away its credit cards.")
   end
 
   def test_that_it_exists
@@ -34,5 +36,12 @@ class OpenMicTest < MiniTest::Test
     @open_mic.welcome(@ali)
 
     assert_equal [@sal, @ali], @open_mic.performers
+  end
+
+  def test_that_jokes_are_not_repeated
+    @ali.learn(@joke_1)
+    @ali.learn(@joke_2)
+
+    refute @open_mic.repeated_jokes?
   end
 end
