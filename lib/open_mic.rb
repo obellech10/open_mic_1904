@@ -10,7 +10,7 @@ class OpenMic
     @location = location
     @date = date
     @performers = []
-    @repeated_jokes = false
+    @repeated_jokes = []
   end
 
   def welcome(user)
@@ -18,6 +18,11 @@ class OpenMic
   end
 
   def repeated_jokes?
-    @repeated_jokes
+    if @repeated_jokes == []
+      false
+    else
+      true
+    end
   end
+
 end
