@@ -26,6 +26,13 @@ class OpenMicTest < MiniTest::Test
 
   def test_that_performers_exist
     assert_instance_of User, @sal
-    assert_instance_of User, @ali 
+    assert_instance_of User, @ali
+  end
+
+  def test_that_performers_are_added_to_show
+    @open_mic.welcome(@sal)
+    @open_mic.welcome(@ali)
+
+    assert_equal [@sal, @ali], @open_mic.performers
   end
 end
